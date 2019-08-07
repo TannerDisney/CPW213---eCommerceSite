@@ -11,10 +11,10 @@ namespace eCommerce.Data
     /// </summary>
     public static class VideoGameDb
     {
-        public static VideoGame Add(VideoGame g, GameContext context)
+        public static async Task<VideoGame> AddAsync(VideoGame g, GameContext context)
         {
-            context.Add(g);
-            context.SaveChanges();
+            await context.AddAsync(g);
+            await context.SaveChangesAsync();
             return g;
         }
     }
