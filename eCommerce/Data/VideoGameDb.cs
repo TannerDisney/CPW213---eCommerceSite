@@ -28,5 +28,15 @@ namespace eCommerce.Data
 
             return games;
         }
+
+        public static async Task<VideoGame> GetGameById(int id, GameContext context)
+        {
+            VideoGame g =
+                await (from game in context.VideoGames
+                 where game.Id == id
+                 select game).SingleOrDefaultAsync();
+
+            return g;
+        }
     }
 }
