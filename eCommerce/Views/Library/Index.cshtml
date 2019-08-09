@@ -51,9 +51,12 @@
                     </a>
                 </li>
             }
-            <li class="page-item">
-                <a class="page-link" asp-action="Index" asp-route-id="@i">@i</a>
-            </li>
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-id="@i">@i</a>
+                </li>
+            }
         }
     </ul>
 </nav>
