@@ -9,6 +9,12 @@ namespace eCommerce.Models
     public class Member
     {
         /// <summary>
+        /// The id of the member
+        /// </summary>
+        [Key]
+        public int MemberId { get; set; }
+
+        /// <summary>
         /// Legal first and last name of member
         /// </summary>
         [StringLength(60)]
