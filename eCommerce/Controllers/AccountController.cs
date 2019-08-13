@@ -40,5 +40,24 @@ namespace eCommerce.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isMember = await MemberDb.IsLoginValid(model, _context);
+                if (isMember)
+                {
+                    TempData["Message"] = $"Welcome back {model.UsernameOrEmail}!";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Sorry, we are unable to find your credentials within our database.");
+                }
+            }
+            return View(model);
+        }
     }
 }
