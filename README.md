@@ -15,6 +15,14 @@ to make the website more visually appealing.
 * [Jquery (Bootstrap Dependency)][5]
 * [PopperJS (Bootstrap Dependency)][6]
 
+>Install website to home computer
+
+1. Clone Repository from github. **Make sure you have the prerequisites from above!**
+2. Open NuGet Package Console.
+3. Enter Update-Database
+
+The Website will now work on the computer you are using!
+
 [1]: https://dotnet.microsoft.com/download
 [2]: https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/
 [3]: https://visualstudio.microsoft.com/downloads/
