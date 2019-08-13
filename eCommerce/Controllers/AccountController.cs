@@ -29,7 +29,7 @@ namespace eCommerce.Controllers
             if (ModelState.IsValid)
             {
                 await MemberDb.Add(_context , m);
-                TempData["Message"] = "You have successfully registered to Tanner's Game Emporium!";
+                TempData["Message"] = $"Welcome {m.FullName} to Tanner's Game Emporium!";
                 return RedirectToAction("Index", "Home");
             }
 
