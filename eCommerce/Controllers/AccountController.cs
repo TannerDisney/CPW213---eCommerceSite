@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using eCommerce.Data;
 using eCommerce.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerce.Controllers
@@ -11,10 +12,12 @@ namespace eCommerce.Controllers
     public class AccountController : Controller
     {
         private readonly GameContext _context;
+        private readonly IHttpContextAccessor _httpAccessor;
 
-        public AccountController(GameContext context)
+        public AccountController(GameContext context, IHttpContextAccessor accessor)
         {
             _context = context;
+            _httpAccessor = accessor;
         }
 
         [HttpGet]
@@ -46,10 +49,13 @@ namespace eCommerce.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool isMember = await MemberDb.IsLoginValid(model, _context);
-                if (isMember)
+                Member member = await MemberDb.IsLoginValid(model, _context);
+                if (member != null)
                 {
                     TempData["Message"] = $"Welcome back {model.UsernameOrEmail}!";
+                    // Create session for user
+                    _httpAccessor.HttpContext.Session.SetInt32("MemberId", member.MemberId);
+                    _httpAccessor.HttpContext.Session.SetString("Username", member.Username);
                     return RedirectToAction("Index", "Home");
                 }
                 else
