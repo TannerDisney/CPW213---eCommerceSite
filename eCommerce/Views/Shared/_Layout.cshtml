@@ -41,7 +41,11 @@
                         </li>
                         @if (sessionData.HttpContext.Session.GetInt32("MemberId").HasValue)
                         {
-                            <p>Welcome Back, @sessionData.HttpContext.Session.GetString("Username")!</p>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">
+                                    Hello @sessionData.HttpContext.Session.GetString("Username"), Logout!
+                                </a>
+                            </li>
                         }
                         else
                         {
