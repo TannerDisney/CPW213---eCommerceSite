@@ -50,6 +50,10 @@ namespace eCommerce.Controllers
                 await VideoGameDb.AddAsync(game, _context);
                 return RedirectToAction("Index");
             }
+            else
+            {
+                TempData["Error"] = true;
+            }
 
             // Return view with model including error messages
             return View(game);

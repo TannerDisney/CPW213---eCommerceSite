@@ -3,30 +3,42 @@
     ViewData["Title"] = "Add new game";
 }
 
-<h1>Add a new game to the catalog</h1>
+<h1>Add a new game</h1>
 
 <form method="post">
-    <label asp-for="Title"></label>
-    <input asp-for="Title" />
-    <span asp-validation-for="Title"></span>
-    <br />
+    <div class="form-group">
+        <input asp-for="Title" placeholder="Game Title" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+        <br />
+    </div>
 
-    <label asp-for="Rating"></label>
-    <input asp-for="Rating" />
-    <span asp-validation-for="Rating"></span>
-    <br />
+    <div class="form-group">
+        <input asp-for="Rating" placeholder="ESRB Rating" />
+        <span asp-validation-for="Rating" class="text-danger"></span>
+        <br />
+    </div>
 
-    <label asp-for="Description"></label>
-    <input asp-for="Description" />
-    <span asp-validation-for="Description"></span>
-    <br />
+    <div class="form-group">
+        <input asp-for="Description" placeholder="Description" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <br />
+    </div>
 
-    <label asp-for="Price"></label>
-    <input asp-for="Price" />
-    <span asp-validation-for="Price"></span>
-    <br />
+    <div class="form-group">
+        <input asp-for="Price" placeholder="Price" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+        <br />
+    </div>
 
-    <input type="submit" value="Add Game" />
+    @if (@TempData["Error"] == null)
+    {
+        <input type="submit" value="Add Game" class="btn btn-primary" />
+    }
+    else
+    {
+        <input type="submit" value="Add Game" class="btn btn-danger" />
+    }
+
 </form>
 
 @*
