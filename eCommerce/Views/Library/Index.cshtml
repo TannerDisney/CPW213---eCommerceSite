@@ -10,54 +10,99 @@
     </a>
 </p>
 
-<table class="table table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th>@Html.DisplayNameFor(m => m.Id)</th>
-            <th>@Html.DisplayNameFor(m => m.Title)</th>
-            <th>@Html.DisplayNameFor(m => m.Rating)</th>
-            <th>@Html.DisplayNameFor(m => m.Description)</th>
-            <th>@Html.DisplayNameFor(m => m.Price)</th>
-            <th>Links</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (VideoGame g in Model)
-        {
-        <tr>
-            <td>@Html.DisplayFor(m => g.Id)</td>
-            <td>@Html.DisplayFor(m => g.Title)</td>
-            <td>@Html.DisplayFor(m => g.Rating)</td>
-            <td>@Html.DisplayFor(m => g.Description)</td>
-            <td>@Html.DisplayFor(m => g.Price)</td>
-            <td>
-                <a asp-action="Update" asp-route-id="@g.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@g.Id">Delete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.Id)</th>
+                <th>@Html.DisplayNameFor(m => m.Title)</th>
+                <th>@Html.DisplayNameFor(m => m.Rating)</th>
+                <th>@Html.DisplayNameFor(m => m.Description)</th>
+                <th>@Html.DisplayNameFor(m => m.Price)</th>
+                <th>Links</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (VideoGame g in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => g.Id)</td>
+                    <td>@Html.DisplayFor(m => g.Title)</td>
+                    <td>@Html.DisplayFor(m => g.Rating)</td>
+                    <td>@Html.DisplayFor(m => g.Description)</td>
+                    <td>@Html.DisplayFor(m => g.Price)</td>
+                    <td>
+                        <a asp-action="Update" asp-route-id="@g.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@g.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<nav aria-label="Catalog Pages">
-    <ul class="pagination">
-        @for (int i = 1; i <= (int)ViewData["Pages"]; i++)
-        {
-            if (i == (int)ViewData["CurrentPage"])
+    <nav aria-label="Catalog Pages">
+        <ul class="pagination">
+            @for (int i = 1; i <= (int)ViewData["Pages"]; i++)
             {
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">
-                        @i<span class="sr-only">(current)</span>
-                    </a>
-                </li>
+                if (i == (int)ViewData["CurrentPage"])
+                {
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">
+                            @i<span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-id="@i">@i</a>
+                    </li>
+                }
             }
-            else
-            {
-                <li class="page-item">
-                    <a class="page-link" asp-action="Index" asp-route-id="@i">@i</a>
-                </li>
-            }
-        }
-    </ul>
-</nav>
+        </ul>
+    </nav>
+
+    <div class="row" style="margin-top: 1em;">
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="~/Pkmn_CC.jpg" class="card-img-top" alt="Pokemon Crystal Clear Box Image" />
+                <div class="card-body">
+                    <h5 class="card-title">Pokemon Crystal Clear</h5>
+                    <p class="card-text">Unofficial pokemon romhack for pokemon crystal</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Author: ShockSlayer</li>
+                        <li class="list-group-item">Rating: E</li>
+                        <li class="list-group-item">Price: 9.99</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://via.placeholder.com/1400x1050" class="card-img-top" alt="Pokemon Crystal Clear Box Image" />
+                <div class="card-body">
+                    <h5 class="card-title">Game Name</h5>
+                    <p class="card-text">Game Description</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Author: ???</li>
+                        <li class="list-group-item">Rating: ???</li>
+                        <li class="list-group-item">Price: ???</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://via.placeholder.com/1400x1050" class="card-img-top" alt="Pokemon Crystal Clear Box Image" />
+                <div class="card-body">
+                    <h5 class="card-title">Game Name</h5>
+                    <p class="card-text">Game Description</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Author: ???</li>
+                        <li class="list-group-item">Rating: ???</li>
+                        <li class="list-group-item">Price: ???</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
