@@ -39,11 +39,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="Index">Game Library</a>
                         </li>
-                        @if (sessionData.HttpContext.Session.GetInt32("MemberId").HasValue)
+                        @if (SessionHelper.IsUserLoggedIn(sessionData))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">
-                                    Hello @sessionData.HttpContext.Session.GetString("Username"), Logout!
+                                    Hello @SessionHelper.GetUsername(sessionData)! | Logout!
                                 </a>
                             </li>
                         }
