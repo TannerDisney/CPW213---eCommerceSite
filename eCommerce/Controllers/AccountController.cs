@@ -32,7 +32,8 @@ namespace eCommerce.Controllers
             if (ModelState.IsValid)
             {
                 await MemberDb.Add(_context , m);
-                TempData["Message"] = $"Welcome {m.FullName} to Tanner's Game Emporium!";
+                SessionHelper.LogUserIn(_httpAccessor, m.MemberId, m.Username);
+                TempData["Message"] = $"Welcome {m.Username} to Tanner's Game Emporium!";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -54,8 +55,7 @@ namespace eCommerce.Controllers
                 {
                     TempData["Message"] = $"Welcome back {model.UsernameOrEmail}!";
                     // Create session for user
-                    _httpAccessor.HttpContext.Session.SetInt32("MemberId", member.MemberId);
-                    _httpAccessor.HttpContext.Session.SetString("Username", member.Username);
+                    SessionHelper.LogUserIn(_httpAccessor, member.MemberId, member.Username);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -69,7 +69,7 @@ namespace eCommerce.Controllers
         public IActionResult Logout()
         {
             // Clear all session data
-            _httpAccessor.HttpContext.Session.Clear();
+            SessionHelper.LogUserOut(_httpAccessor);
             TempData["Message"] = "Logged out successfully!";
             return RedirectToAction("Index", "Home");
             
