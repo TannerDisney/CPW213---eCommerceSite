@@ -15,6 +15,9 @@ to make the website more visually appealing.
 * [Jquery (Bootstrap Dependency)][5]
 * [PopperJS (Bootstrap Dependency)][6]
 
+>CSS Library's
+* [FontAwesome 5][7]
+
 >Install website to home computer
 
 1. Clone Repository from github. **Make sure you have the prerequisites from above!**
@@ -29,3 +32,4 @@ The Website will now work on the computer you are using!
 [4]: https://getbootstrap.com/docs/4.3/getting-started/introduction/
 [5]: https://jquery.com/download/
 [6]: https://github.com/FezVrasta/popper.js#installation
+[7]: https://fontawesome.com/start
