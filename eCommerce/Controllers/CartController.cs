@@ -24,6 +24,8 @@ namespace eCommerce.Controllers
         public async Task<IActionResult> Add(int id)
         {
             VideoGame g = await VideoGameDb.GetGameById(id, _context);
+            CartHelper.Add(_httpAccessor, g);
+            /*
             string data = JsonConvert.SerializeObject(g);
             CookieOptions options = new CookieOptions()
             {
@@ -32,6 +34,7 @@ namespace eCommerce.Controllers
             };
 
             _httpAccessor.HttpContext.Response.Cookies.Append("CartCookie", data, options);
+            */
             return RedirectToAction("Index", "Library");
         }
     }
