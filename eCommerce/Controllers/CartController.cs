@@ -37,5 +37,11 @@ namespace eCommerce.Controllers
             */
             return RedirectToAction("Index", "Library");
         }
+
+        public IActionResult Checkout()
+        {
+            List<VideoGame> games = CartHelper.GetGames(_httpAccessor);
+            return View(games);
+        }
     }
 }
