@@ -26,6 +26,52 @@ namespace eCommerce.Data
         }
 
         /// <summary>
+        /// Searches for games that match the criteria and
+        /// returns all games that match
+        /// </summary>
+        /// <param name="context">The database context</param>
+        /// <param name="criteria">The search criteria for the database</param>
+        /// <returns></returns>
+        public static async Task<List<VideoGame>> Search(GameContext context, SearchCriteria criteria)
+        {
+            // SELECT * FROM VideoGames
+            // Does NOT query the database
+            IQueryable<VideoGame> allGames =
+                    from g in context.VideoGames
+                    select g;
+            if (criteria.MinPrice.HasValue)
+            {
+                // Add to WHERE clause
+                allGames = from g in allGames
+                           where g.Price >= criteria.MinPrice
+                           select g;
+            }
+
+            if (criteria.MaxPrice.HasValue)
+            {
+                allGames = from g in allGames
+                           where g.Price <= criteria.MaxPrice
+                           select g;
+            }
+
+            if (!string.IsNullOrWhiteSpace(criteria.Title))
+            {
+                allGames = from g in allGames
+                           where g.Title.StartsWith(criteria.Title)
+                           select g;
+            }
+
+            if (!string.IsNullOrWhiteSpace(criteria.Rating))
+            {
+                allGames = from g in allGames
+                           where g.Rating == criteria.Rating
+                           select g;
+            }
+            // Send final query to the database to return results
+            return await allGames.ToListAsync();
+        }
+
+        /// <summary>
         /// Returns the total number of pages needed to 
         /// have <paramref name="pageSize" /> amount of products per page
         /// </summary>
