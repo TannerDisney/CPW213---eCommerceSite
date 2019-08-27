@@ -18,6 +18,28 @@ namespace eCommerce.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Search(SearchCriteria criteria)
+        {
+            if (ValidSearch(criteria))
+            {
+                criteria.GameResults = await VideoGameDb.Search(_context, criteria);
+            }
+            return View(criteria);
+        }
+
+        private bool ValidSearch(SearchCriteria criteria)
+        {
+            if (criteria.Title == null && 
+                criteria.Rating == null && 
+                criteria.MinPrice == null && 
+                criteria.MaxPrice == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Index(int? id)
         {
             // Null Coalescing Operator
